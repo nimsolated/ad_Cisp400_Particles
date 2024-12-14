@@ -65,16 +65,17 @@ void Engine::input()
 
 void Engine::update(float dtAsSeconds)
 {
-	for (vector<Particle>::iterator iter = m_particles.begin(); iter != m_particles.end(); ++iter)
+	for (size_t i = 0; i < m_particles.size(); ++i)
 	{
-		if ((*iter).getTTL() > 0.0f)
+		if (m_particles[i].getTTL() > 0.0f)
 		{
-			(*iter).update(dtAsSeconds);
-			++iter;
+			m_particles[i].update(dtAsSeconds);
+			++i;
 		}
 		else
 		{
-			iter = m_particles.erase(iter);
+			m_particles.erase(m_particles.begin() + i);
+			--i;
 		}
 	}
 }
