@@ -16,4 +16,17 @@ namespace Matrices
 		}
 	}
 
+	Matrix operator+(const Matrix& a, const Matrix& b) {
+		if (a.getRows() != b.getRows() || a.getCols() != b.getCols()) {
+			throw runtime_error("Error: dimensions must agree");
+		}
+		Matrix result(a.getRows(), a.getCols());
+		for (int r = 0; r < a.getRows(); r++) {
+			for (int c = 0; c < a.getCols(); c++) {
+				result(r, c) = a(r, c) + b(r, c);
+			}
+		}
+		return result;
+	}
+
 }
