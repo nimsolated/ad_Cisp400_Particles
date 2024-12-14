@@ -83,4 +83,26 @@ namespace Matrices
 		return os;
 	}
 
+	RotationMatrix::RotationMatrix(double theta) : Matrix(2, 2) {
+		(*this)(0, 0) = cos(theta);
+		(*this)(0, 1) = sin(theta);
+		(*this)(1, 0) = -sin(theta);
+		(*this)(1, 1) = cos(theta);
+	}
+
+	ScalingMatrix::ScalingMatrix(double scale) : Matrix(2, 2) {
+		(*this)(0, 0) = scale;
+		(*this)(0, 1) = 0;
+		(*this)(1, 0) = 0;
+		(*this)(1, 1) = scale;
+	}
+
+	TranslationMatrix::TranslationMatrix(double xShift, double yShift, int nCols)
+		: Matrix(2, nCols) // Call the parent constructor to create a 2×nCols matrix
+	{
+		for (int c = 0; c < nCols; ++c) {
+			(*this)(0, c) = xShift; // Assign xShift to all elements in the first row
+			(*this)(1, c) = yShift; // Assign yShift to all elements in the second row
+		}
+	}
 }
