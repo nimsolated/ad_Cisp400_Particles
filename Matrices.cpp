@@ -17,9 +17,6 @@ namespace Matrices
 	}
 
 	Matrix operator+(const Matrix& a, const Matrix& b) {
-		if (a.getRows() != b.getRows() || a.getCols() != b.getCols()) {
-			throw runtime_error("Error: dimensions must agree");
-		}
 		Matrix resultmatrix(a.getRows(), a.getCols());
 		for (int r = 0; r < a.getRows(); r++) {
 			for (int c = 0; c < a.getCols(); c++) {
@@ -30,12 +27,9 @@ namespace Matrices
 	}
 
 	Matrix operator*(const Matrix& a, const Matrix& b) {
-		if (a.getCols() != b.getRows()) {
-			throw runtime_error("Dimensions must match");
-		}
 		Matrix resultmatrix(a.getRows(), b.getCols());
 		for (int r = 0; r < a.getRows(); r++) {
-			for (int c = 0; a.getCols(); c++) {
+			for (int c = 0; c < b.getCols(); c++) {
 				resultmatrix(r, c) = 0;
 				for (int k = 0; k < a.getCols(); ++k) {
 					resultmatrix(r, c) += a(r, k) * b(k, c);
