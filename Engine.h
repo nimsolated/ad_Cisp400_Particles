@@ -8,6 +8,9 @@ using namespace std;
 class Engine
 {
 private:
+	// Particles to generate per click
+	const unsigned int NUM_PARTICLES = 5;
+
 	// A regular RenderWindow
 	RenderWindow m_Window;
 
