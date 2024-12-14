@@ -20,13 +20,13 @@ namespace Matrices
 		if (a.getRows() != b.getRows() || a.getCols() != b.getCols()) {
 			throw runtime_error("Error: dimensions must agree");
 		}
-		Matrix result(a.getRows(), a.getCols());
+		Matrix resultmatrix(a.getRows(), a.getCols());
 		for (int r = 0; r < a.getRows(); r++) {
 			for (int c = 0; c < a.getCols(); c++) {
-				result(r, c) = a(r, c) + b(r, c);
+				resultmatrix(r, c) = a(r, c) + b(r, c);
 			}
 		}
-		return result;
+		return resultmatrix;
 	}
 
 	Matrix operator*(const Matrix& a, const Matrix& b) {
@@ -44,4 +44,43 @@ namespace Matrices
 		}
 		return resultmatrix;
 	}
+
+	bool operator==(const Matrix& a, const Matrix& b) {
+		if (a.getRows() != b.getRows() || a.getCols() != b.getCols()) {
+			return false;
+		}
+		for (int r = 0; r < a.getRows(); r++) {
+			for (int c = 0; c < a.getCols(); c++) {
+				if (abs(a(r, c) - b(r, c)) >= 0.001) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	bool operator!=(const Matrix& a, const Matrix& b) {
+		if (a.getRows() != b.getRows() || a.getCols() != b.getCols()) {
+			return true;
+		}
+		for (int r = 0; r < a.getRows(); r++) {
+			for (int c = 0; c < a.getCols(); c++) {
+				if (abs(a(r, c) - b(r, c)) >= 0.001) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	ostream& operator<<(ostream& os, const Matrix& a) {
+		for (int r = 0; r < a.getRows(); r++) {
+			for (int c = 0; c < a.getCols(); c++) {
+				os << a(r, c) << " ";
+			}
+			os << "\n";
+		}
+		return os;
+	}
+
 }
