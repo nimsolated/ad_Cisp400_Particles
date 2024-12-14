@@ -6,7 +6,7 @@ using namespace sf;
 
 Engine::Engine()
 {
-	m_Window.create(VideoMode(600, 600), "Particles!! by Armin and Daniel");
+	m_Window.create(VideoMode(desktop.width / 2, desktop.height / 2), "Particles!! by Armin and Daniel");
 }
 
 void Engine::run()
